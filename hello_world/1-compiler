@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc -c "$CFILE" -o "${CFILE%.c}.o" && echo "Compilation successful. The object file is '${CFILE%.c}.o'." || echo "Error: Compilation failed."
+gcc -c "$CFILE" -o "${CFILE%.c}.o
