@@ -22,7 +22,7 @@
 	}
 	else if (n == 0)
 	{
-	printf("%d equal 0\n", n);
+	printf("%d is 0\n", n);
 	}
 	else
 	{
