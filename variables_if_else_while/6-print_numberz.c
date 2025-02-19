@@ -12,7 +12,7 @@ int main(void)
 	for (nbr = 0 ; nbr < 10; nbr++)
 		putchar((nbr % 10) + '0');
 
-	printf("\n");
+	putchar('\n');
 
 	return (0);
 }
