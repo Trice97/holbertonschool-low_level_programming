@@ -5,9 +5,10 @@
  *
  * Return: Always 0 (Success)
  */
+
 int main(void)
 {
-	char letter , LETTER;
+	char letter, LETTER;
 
 	for (letter = 'a'; letter <= 'z'; letter++)
 	{
@@ -16,11 +17,9 @@ int main(void)
 	}
 
 
-
-
 	for (LETTER = 'A'; LETTER <= 'Z'; LETTER++)
 	{
-			putchar(LETTER);
+		putchar(LETTER);
 	}
 	putchar('\n');
 	return (0);
