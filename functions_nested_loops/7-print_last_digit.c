@@ -1,8 +1,10 @@
 #include "main.h"
-
 /**
- *imprimmer le dernier chiffre.
-*/
+ * print_last_digit - Prints the last digit of a number.
+ * @n: The number to process.
+ *
+ * Return: The value of the last digit.
+ */
 
 int print_last_digit(int n)
 {
@@ -16,8 +18,7 @@ int print_last_digit(int n)
 	{
 		last_digit = n % 10;
 	}
-/*fonction qui imprime le dernier chiffre de n*/
-	
+
 	_putchar('0' + last_digit);
 	return (last_digit);
 }
