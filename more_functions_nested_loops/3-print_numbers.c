@@ -1,8 +1,10 @@
 #include "main.h"
-#include <unistd.h>
 /**
- * print_numbers - Prints numbers from 0 to 9, followed by a new line.
+ * print_numbers - prints them from 0 to 9
+ *
+ * return: void
  */
+
 void print_numbers(void)
 {
 	int i;
@@ -11,5 +13,5 @@ void print_numbers(void)
 	{
 		_putchar(i + '0');
 	}
-		_putchar('\n');
+	_putchar('\n');
 }
