@@ -20,7 +20,7 @@ char *cap_string(char *str)
 /* Convert to uppercase*/
 		}
 
-		capitalize_next = 0
+		capitalize_next = 0;
 /* Reset flag*/
 
 		switch (str[i])
