@@ -2,13 +2,13 @@
 #include <stdio.h>
 
 /**
- * main - check the code
+ * main - vérifie le code
  *
- * Return: Always 0.
+ * Return: toujours 0.
  */
 int main(void)
 {
-    char board[8][8] = {
+        char board[8][8] = {
         {'r', 'k', 'b', 'q', 'k', 'b', 'k', 'r'},
         {'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'},
         {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -17,7 +17,7 @@ int main(void)
         {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
         {'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
         {'R', 'K', 'B', 'Q', 'K', 'B', 'K', 'R'},
-    };
-    print_chessboard(board);
-    return (0);
+        };
+        print_chessboard(board);
+        return (0);
 }
