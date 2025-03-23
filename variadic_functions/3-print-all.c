@@ -1,42 +1,85 @@
 #include "variadic_functions.h"
 #include <stdio.h>
 #include <stdarg.h>
+
 /**
- * print_all - Prints anything, followed by a new line.
- * @format: A list of types of arguments passed to the function.
- * @...: Variable number of arguments.
+ * print_char - Prints a char
+ * @ap: va_list containing the char to print
+ */
+void print_char(va_list ap)
+{
+	printf("%c", va_arg(ap, int));
+}
+
+/**
+ * print_int - Prints an integer
+ * @ap: va_list containing the integer to print
+ */
+void print_int(va_list ap)
+{
+	printf("%d", va_arg(ap, int));
+}
+
+/**
+ * print_float - Prints a float
+ * @ap: va_list containing the float to print
+ */
+void print_float(va_list ap)
+{
+	printf("%f", va_arg(ap, double));
+}
+
+/**
+ * print_string - Prints a string
+ * @ap: va_list containing the string to print
+ */
+void print_string(va_list ap)
+{
+	char *str = va_arg(ap, char *);
+
+	if (str == NULL)
+		printf("(nil)");
+	else
+		printf("%s", str);
+}
+
+/**
+ * print_all - Prints anything
+ * @format: List of types of arguments passed to the function
+ * Description: c: char, i: integer, f: float, s: char * (if NULL print (nil))
  */
 void print_all(const char * const format, ...)
 {
-	va_list args;
-	unsigned int  i = 0, j = 0;
-	char *str;
-	const char *separator = "";
+	va_list ap;
+	unsigned int i = 0;
+	unsigned int j;
+	char *separator = "";
 
-	va_start(args, format);
+	printer_t printers[] = {
+		{'c', print_char},
+		{'i', print_int},
+		{'f', print_float},
+		{'s', print_string},
+		{0, NULL}
+	};
+
+	va_start(ap, format);
 
 	while (format && format[i])
 	{
-		switch (format[i])
+		j = 0;
+		while (printers[j].type)
 		{
-			case 'c':
-				print_char(args, separator);
-				break;
-			case'i'
-				print_int(args, separator);
-				break;
-			case'f':
-				print_char(args, separator);
-				break;
-			case's':
-				print_char(args, separator);
-				break;
-			default:
-				break;
+			if (printers[j].type == format[i])
+			{
+				printf("%s", separator);
+				printers[j].print(ap);
+				separator = ", ";
+			}
+			j++;
 		}
-		sepoarator = ", ";
-		i++
+		i++;
 	}
 	printf("\n");
-	va_end(args);
+	va_end(ap);
 }
