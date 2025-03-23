@@ -3,83 +3,49 @@
 #include <stdarg.h>
 
 /**
- * print_char - Prints a char
- * @ap: va_list containing the char to print
- */
-void print_char(va_list ap)
-{
-	printf("%c", va_arg(ap, int));
-}
-
-/**
- * print_int - Prints an integer
- * @ap: va_list containing the integer to print
- */
-void print_int(va_list ap)
-{
-	printf("%d", va_arg(ap, int));
-}
-
-/**
- * print_float - Prints a float
- * @ap: va_list containing the float to print
- */
-void print_float(va_list ap)
-{
-	printf("%f", va_arg(ap, double));
-}
-
-/**
- * print_string - Prints a string
- * @ap: va_list containing the string to print
- */
-void print_string(va_list ap)
-{
-	char *str = va_arg(ap, char *);
-
-	if (str == NULL)
-		printf("(nil)");
-	else
-		printf("%s", str);
-}
-
-/**
- * print_all - Prints anything
- * @format: List of types of arguments passed to the function
- * Description: c: char, i: integer, f: float, s: char * (if NULL print (nil))
+ * print_all - Prints anything, followed by a new line.
+ * @format: A list of types of arguments passed to the function.
+ * @...: Variable number of arguments.
  */
 void print_all(const char * const format, ...)
 {
-	va_list ap;
+	va_list args;
 	unsigned int i = 0;
-	unsigned int j;
-	char *separator = "";
+	char *str;
+	const char *separator = "";
 
-	printer_t printers[] = {
-		{'c', print_char},
-		{'i', print_int},
-		{'f', print_float},
-		{'s', print_string},
-		{0, NULL}
-	};
+	va_start(args, format);
 
-	va_start(ap, format);
-
-	while (format && format[i])
+	if (format)
 	{
-		j = 0;
-		while (printers[j].type)
+		while (format[i])
 		{
-			if (printers[j].type == format[i])
+			switch (format[i])
 			{
-				printf("%s", separator);
-				printers[j].print(ap);
+				case 'c':
+					printf("%s%c", separator, va_arg(args, int));
+					break;
+				case 'i':
+					printf("%s%d", separator, va_arg(args, int));
+					break;
+				case 'f':
+					printf("%s%f", separator, va_arg(args, double));
+					break;
+				case 's':
+					str = va_arg(args, char *);
+					if (!str)
+					{
+						str = "(nil)";
+					}
+					printf("%s%s", separator, str);
+					break;
+					default:
+					break;
+				}
 				separator = ", ";
-			}
-			j++;
+			i++;
 		}
-		i++;
 	}
 	printf("\n");
-	va_end(ap);
+	va_end(args);
 }
